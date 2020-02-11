@@ -6,33 +6,72 @@
      class="mb16"
      >
       <h2 class="display-2">Список товаров</h2>
-      <v-btn color="blue" class="my-button white--text" medium right top>
+      <v-btn color="blue" class="my-button white--text" @onClick="$emit('openCart')" medium right top>
         Корзина
       </v-btn>
     </v-row>
     <v-layout row wrap>
-        <v-row pa-1>
-          <v-col  v-for="(product, index) in preparedProductsList" :key="index">
-            <v-hover>
-              <v-card slot-scope="{hover}" class="mx-auto" color="gray lighten-4" height="350">
-                <styled-image :color="product.description">
-                  <v-expand-transition>
-                    <div v-if="hover" class="d-flex transition-fast-in-fast-out orange draken-2 display-3 v-card--reveal display3 black--text" style="height: 100%;">
-                      ${{product.price}}
-                    </div>
-                  </v-expand-transition>
-                </styled-image>
+        <template v-if="preparedProductsList.length < 3">
+          <v-row pa-1>
+            <v-col  v-for="(product, index) in preparedProductsList" :key="index">
+              <v-hover>
+                <v-card slot-scope="{hover}" class="mx-auto" color="gray lighten-4" height="350">
+                  <styled-image :color="product.description">
+                    <v-expand-transition>
+                      <div v-if="hover" class="d-flex transition-fast-in-fast-out orange draken-2 display-3 v-card--reveal display3 black--text" style="height: 100%;">
+                        ${{product.price}}
+                      </div>
+                    </v-expand-transition>
+                  </styled-image>
 
-                <v-card-text class="pt-4" style="position: relative;">
-                  <h3 class="display-1 font-weight-light orange--text mb-2">{{product.name}}</h3>
-                  <v-btn color="green" class="my-button white--text" medium right top>
-                    Купить
-                  </v-btn>
-                </v-card-text>                
-              </v-card>
-            </v-hover>      
-          </v-col>
-      </v-row>
+                  <v-card-text class="pt-4" style="position: relative;">
+                    <h3 class="display-1 font-weight-light orange--text mb-2">{{product.name}}</h3>
+                    <v-btn color="green" class="my-button white--text" medium right top>
+                      Купить
+                    </v-btn>
+                  </v-card-text>                
+                </v-card>
+              </v-hover>      
+            </v-col>
+          </v-row>    
+        </template>
+        <template v-else>
+          <v-carousel
+            cycle
+            height="400"
+            hide-delimiter-background
+            show-arrows-on-hover
+          >
+            <v-carousel-item
+              v-for="(product, i) in preparedProductsList"
+              :key="i"
+            >
+              <v-sheet
+                height="100%"
+              >
+                <v-hover>
+                  <v-card slot-scope="{hover}" class="mx-auto" color="gray lighten-4" height="350">
+                    <styled-image :color="product.description">
+                      <v-expand-transition>
+                        <div v-if="hover" class="d-flex transition-fast-in-fast-out orange draken-2 display-3 v-card--reveal display3 black--text" style="height: 100%;">
+                          ${{product.price}}
+                        </div>
+                      </v-expand-transition>
+                    </styled-image>
+
+                    <v-card-text class="pt-4" style="position: relative;">
+                      <h3 class="display-1 font-weight-light orange--text mb-2">{{product.name}}</h3>
+                      <v-btn color="green" class="my-button white--text" medium right top>
+                        Купить
+                      </v-btn>
+                    </v-card-text>                
+                  </v-card>
+                </v-hover>      
+  
+              </v-sheet>
+            </v-carousel-item>
+          </v-carousel>
+        </template>        
     </v-layout>
   </v-container>
 </template>
