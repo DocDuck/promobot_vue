@@ -26,7 +26,7 @@
 
                   <v-card-text class="pt-4" style="position: relative;">
                     <h3 class="display-1 font-weight-light orange--text mb-2">{{product.name}}</h3>
-                    <v-btn color="green" class="my-button white--text" medium right top>
+                    <v-btn @click="onOpenDetail(product.id)" color="green" class="my-button white--text" medium right top>
                       Посмотреть
                     </v-btn>
                   </v-card-text>                
@@ -61,7 +61,7 @@
 
                     <v-card-text class="pt-4" style="position: relative;">
                       <h3 class="display-1 font-weight-light orange--text mb-2">{{product.name}}</h3>
-                      <v-btn color="green" class="my-button white--text" medium right top>
+                      <v-btn @click="onOpenDetail(product.id)" color="green" class="my-button white--text" medium right top>
                         Посмотреть
                       </v-btn>
                     </v-card-text>                
@@ -110,6 +110,9 @@
         for (let i = 0; i < cardAmount; i++) {
           this.preparedProductsList.push(sortedArray[i])          
         }        
+      },
+      onOpenDetail (id) {
+        this.$emit('openDetail', id)    
       }
     },
     mounted () {

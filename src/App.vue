@@ -1,8 +1,8 @@
 <template>
   <v-app>
     <v-content>
-      <List @openCart='handleOpenCart' @openDetail='handleOpenDetail'/>
-      <Detail/>
+      <List v-if="!isDetailOpen" @openCart='handleOpenCart' @openDetail='handleOpenDetail'/>
+      <Detail v-if="isDetailOpen" :isOpen='isDetailOpen' :product="currentItem" @onClose="handleCloseDetail" />
       <Cart :isOpen='isCartOpen' @onOpen="handleOpenCart" v-model='chosenItems'/>
     </v-content>
   </v-app>
@@ -11,19 +11,22 @@
 <script>
 import List from './components/List';
 import Cart from './components/Cart';
+import Detail from './components/Detail';
+import products from '@/products.js'
 
 export default {
   name: 'App',
 
   components: {
     List,
-    Cart
+    Cart,
+    Detail
   },
 
   data: () => ({
     currentItem: {},
     isCartOpen: false,
-    isDetailOPen: false,
+    isDetailOpen: false,
     chosenItems: []
   }),
 
@@ -32,9 +35,12 @@ export default {
       console.log('карточка открыта', value)
       this.isCartOpen = value      
     },
-    handleOpenDetail (id) {
-      console.log('смотрю товар', id)
+    handleOpenDetail (productId) {
+      this.currentItem = products.find(item => item.id === productId)
       this.isDetailOpen = true
+    },
+    handleCloseDetail () {      
+      this.isDetailOpen = false
     }
   }
 };
