@@ -115,7 +115,6 @@
     mounted () {
       // при создании компонента готовим данные для отрисовки карточек товаров
       this.getRandomLimitedList(this.products)
-      console.log(this.preparedProductsList)
     }
   }
 </script>

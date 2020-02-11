@@ -2,7 +2,7 @@
   <v-app>
     <v-content>
       <List @openCart='handleOpenCart'/>
-      <Cart :isOpen='isCartOpen' v-bind='chosenItems'/>
+      <Cart :isOpen='isCartOpen' @onOpen="setCartVisibility" v-model='chosenItems'/>
     </v-content>
   </v-app>
 </template>
@@ -29,6 +29,9 @@ export default {
       console.log('карточка открыта')
       this.isCartOpen = true
       this.chosenItems = itemsList || []
+    },
+    setCartVisibility (value) {
+      this.isCartOpen = value
     }
   }
 };
