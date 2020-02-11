@@ -4,6 +4,7 @@
         <v-card-title>Товар</v-card-title>
             <v-card-text class="pt-4" style="position: relative;">
                 <h3 class="display-1 font-weight-light orange--text mb-2">{{product.name}}</h3>
+                <p>{{product.price}}</p>
                 <p>{{product.description}}</p>
             </v-card-text>         
             <v-card-actions>
@@ -16,9 +17,6 @@
 <script>
     export default {
         props: ['product'],
-        data: () => ({
-            product: {}
-        }),
         computed: {
         isDescOpen: {
             get: function () { return this.isOpen },
