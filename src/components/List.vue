@@ -6,7 +6,7 @@
      class="mb16"
      >
       <h2 class="display-2">Список товаров</h2>
-      <v-btn color="blue" class="my-button white--text" @onClick="$emit('openCart')" medium right top>
+      <v-btn color="blue" class="my-button white--text" @click="$emit('openCart')" medium right top>
         Корзина
       </v-btn>
     </v-row>

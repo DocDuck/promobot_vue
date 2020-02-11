@@ -2,7 +2,7 @@
   <v-app>
     <v-content>
       <List @openCart='handleOpenCart'/>
-      <Cart :isOpen='isCartOpen' :items='chosenItems'/>
+      <Cart :isOpen='isCartOpen' v-bind='chosenItems'/>
     </v-content>
   </v-app>
 </template>
@@ -25,7 +25,8 @@ export default {
   }),
 
   methods: {
-    handleOpenCart (itemsList) {
+    handleOpenCart (itemsList = []) {
+      console.log('карточка открыта')
       this.isCartOpen = true
       this.chosenItems = itemsList || []
     }
