@@ -4,27 +4,28 @@
 
     <v-layout row wrap>
       <template v-for="(product, index) in preparedProductsList">
-        <v-flex xs2 pa-1 :key="index">
-          <v-hover>
-            <v-card slot-scope="{hover}" class="mx-auto" color="gray lighten-4" max-width="600" height="350">
-              <v-img :src="product.src" :aspect-ratio="16/9">
-                <v-expand-transition>
-                  <div v-if="hover" class="d-flex transition-fast-in-fast-out orange draken-2 display-3 v-card--reveal display3 black--text" style="height: 100%;">
-                    ${{product.price}}
-                  </div>
-                </v-expand-transition>
-              </v-img>
+        <v-row pa-1 :key="index">
+          <v-col v-for="item in preparedProductsList.length" :key="item">
+            <v-hover>
+              <v-card slot-scope="{hover}" class="mx-auto" color="gray lighten-4" height="350">
+                <v-img :src="product.description">
+                  <v-expand-transition>
+                    <div v-if="hover" class="d-flex transition-fast-in-fast-out orange draken-2 display-3 v-card--reveal display3 black--text" style="height: 100%;">
+                      ${{product.price}}
+                    </div>
+                  </v-expand-transition>
+                </v-img>
 
-              <v-card-text class="pt-4" style="position: relative;">
-                <h3 class="display-1 font-weight-light orange--text mb-2">{{product.name}}</h3>
-                <v-btn color="green" class="my-button white--text" medium right top>
-                  Купить
-                </v-btn>
-              </v-card-text>
-              
-            </v-card>
-          </v-hover>
-        </v-flex>
+                <v-card-text class="pt-4" style="position: relative;">
+                  <h3 class="display-1 font-weight-light orange--text mb-2">{{product.name}}</h3>
+                  <v-btn color="green" class="my-button white--text" medium right top>
+                    Купить
+                  </v-btn>
+                </v-card-text>                
+              </v-card>
+            </v-hover>      
+          </v-col>
+        </v-row>
       </template>
     </v-layout>
   </v-container>
@@ -73,7 +74,4 @@
   font-size: 24px !important;
 }
 
-.my-button {
-
-}
 </style>
