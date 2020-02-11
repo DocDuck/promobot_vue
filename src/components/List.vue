@@ -8,13 +8,13 @@
           <v-col v-for="item in preparedProductsList.length" :key="item">
             <v-hover>
               <v-card slot-scope="{hover}" class="mx-auto" color="gray lighten-4" height="350">
-                <v-img :src="product.description">
+                <styled-image :color="product.description">
                   <v-expand-transition>
                     <div v-if="hover" class="d-flex transition-fast-in-fast-out orange draken-2 display-3 v-card--reveal display3 black--text" style="height: 100%;">
                       ${{product.price}}
                     </div>
                   </v-expand-transition>
-                </v-img>
+                </styled-image>
 
                 <v-card-text class="pt-4" style="position: relative;">
                   <h3 class="display-1 font-weight-light orange--text mb-2">{{product.name}}</h3>
@@ -32,8 +32,22 @@
 </template>
 
 <script>
-  import products from '@/products.js' 
+  import styled from 'vue-styled-components' 
+  import products from '@/products.js'
+
+  const backgroundProps = { color: String };
+
+  const StyledImage = styled('div', backgroundProps)`
+    display: block;
+    width: 100%; 
+    height: 60%;
+    background: ${props => props.color ?  props.color : 'white'};
+  `;
+
   export default {
+    components: {
+      StyledImage
+    },
     data: () => ({
       products,
       preparedProductsList: []
