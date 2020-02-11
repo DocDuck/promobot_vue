@@ -1,8 +1,9 @@
 <template>
   <v-app>
     <v-content>
-      <List @openCart='handleOpenCart'/>
-      <Cart :isOpen='isCartOpen' @onOpen="setCartVisibility" v-model='chosenItems'/>
+      <List @openCart='handleOpenCart' @openDetail='handleOpenDetail'/>
+      <Detail/>
+      <Cart :isOpen='isCartOpen' @onOpen="handleOpenCart" v-model='chosenItems'/>
     </v-content>
   </v-app>
 </template>
@@ -20,18 +21,20 @@ export default {
   },
 
   data: () => ({
+    currentItem: {},
     isCartOpen: false,
+    isDetailOPen: false,
     chosenItems: []
   }),
 
   methods: {
-    handleOpenCart (itemsList = []) {
-      console.log('карточка открыта')
-      this.isCartOpen = true
-      this.chosenItems = itemsList || []
+    handleOpenCart (value) {
+      console.log('карточка открыта', value)
+      this.isCartOpen = value      
     },
-    setCartVisibility (value) {
-      this.isCartOpen = value
+    handleOpenDetail (id) {
+      console.log('смотрю товар', id)
+      this.isDetailOpen = true
     }
   }
 };

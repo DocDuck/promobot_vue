@@ -6,7 +6,7 @@
      class="mb16"
      >
       <h2 class="display-2">Список товаров</h2>
-      <v-btn color="blue" class="my-button white--text" @click="$emit('openCart')" medium right top>
+      <v-btn color="blue" class="my-button white--text" @click="$emit('openCart', true)" medium right top>
         Корзина
       </v-btn>
     </v-row>
@@ -27,7 +27,7 @@
                   <v-card-text class="pt-4" style="position: relative;">
                     <h3 class="display-1 font-weight-light orange--text mb-2">{{product.name}}</h3>
                     <v-btn color="green" class="my-button white--text" medium right top>
-                      Купить
+                      Посмотреть
                     </v-btn>
                   </v-card-text>                
                 </v-card>
@@ -62,7 +62,7 @@
                     <v-card-text class="pt-4" style="position: relative;">
                       <h3 class="display-1 font-weight-light orange--text mb-2">{{product.name}}</h3>
                       <v-btn color="green" class="my-button white--text" medium right top>
-                        Купить
+                        Посмотреть
                       </v-btn>
                     </v-card-text>                
                   </v-card>
