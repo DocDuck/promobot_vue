@@ -1,11 +1,18 @@
 <template>
   <v-container>
-    <h2 class="display-2 mb-4">Список товааров</h2>
-
+    <v-row
+     align="center"
+     justify="space-between"
+     class="mb16"
+     >
+      <h2 class="display-2">Список товаров</h2>
+      <v-btn color="blue" class="my-button white--text" medium right top>
+        Корзина
+      </v-btn>
+    </v-row>
     <v-layout row wrap>
-      <template v-for="(product, index) in preparedProductsList">
-        <v-row pa-1 :key="index">
-          <v-col v-for="item in preparedProductsList.length" :key="item">
+        <v-row pa-1>
+          <v-col  v-for="(product, index) in preparedProductsList" :key="index">
             <v-hover>
               <v-card slot-scope="{hover}" class="mx-auto" color="gray lighten-4" height="350">
                 <styled-image :color="product.description">
@@ -25,8 +32,7 @@
               </v-card>
             </v-hover>      
           </v-col>
-        </v-row>
-      </template>
+      </v-row>
     </v-layout>
   </v-container>
 </template>
