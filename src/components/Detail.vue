@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-row
-            class="mt16"
+            class="m16"
             justify="center">
             <v-card>
                 <v-card-title>Товар</v-card-title>
@@ -12,7 +12,7 @@
                     </v-card-text>         
                     <v-card-actions>
                         <v-btn color="blue darken-1" text @click="$emit('onClose')">Закрыть</v-btn>
-                        <v-btn color="blue darken-1" text @click="buy">Добавить</v-btn>
+                        <v-btn :disabled="isAdded" color="blue darken-1" text @click="add">Добавить</v-btn>
                     </v-card-actions>
             </v-card>    
         </v-row>
@@ -21,6 +21,9 @@
 <script>
     export default {
         props: ['product'],
+        data: () => ({
+            isAdded: false        
+        }),
         computed: {
         isDescOpen: {
             get: function () { return this.isOpen },
@@ -33,13 +36,12 @@
         removeProduct (id) {
             console.log('товар удалён', id)
         },
-        buy() {
-            console.log('вот что я купил', this.value )   
+        add() {
+            this.$emit('addItem', this.product)
+            alert(`Продукт ${this.product.name} добавлен!`)
+            this.isAdded = true
         }
-        },
-        mounted () {                  
-            console.log(this.product)
-        }
+        }        
     }
 </script>
 

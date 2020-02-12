@@ -1,13 +1,12 @@
 <template>
   <v-row justify="center">
     <v-dialog v-model="isCardOpen" scrollable max-width="300px">
-      <v-card>
-        <v-card-text>
+      <v-card>        
         <v-list>
           <v-subheader>ТОВАРЫ</v-subheader>
           <v-list-item-group v-model="item" color="primary">
           <v-list-item
-            v-for="(item, i) in value"
+            v-for="(item, i) in products"
             :key="i"
             :inactive="inactive"
           >
@@ -26,8 +25,7 @@
           </v-list-item>
           
         </v-list-item-group>
-        </v-list>
-        </v-card-text>        
+        </v-list>          
         <v-card-actions>
           <v-btn color="blue darken-1" text @click="isCardOpen = false">Закрыть</v-btn>
           <v-btn color="blue darken-1" text @click="buy">Купить</v-btn>
@@ -52,7 +50,7 @@
     components: {
       StyledIcon
     },
-    props: ['isOpen', 'value'],
+    props: ['isOpen', 'products'],
     data: () => ({
       
     }),
@@ -64,7 +62,7 @@
         }
       },
       productList () {
-        return this.value || []
+        return this.products || []
       }
     },
     methods: {
