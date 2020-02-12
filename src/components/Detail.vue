@@ -7,7 +7,7 @@
                 <v-card-title>Товар</v-card-title>
                     <v-card-text class="pt-4" style="position: relative;">
                         <h3 class="display-1 font-weight-light orange--text mb-2">{{product.name}}</h3>
-                        <p>{{product.price}}</p>
+                        <p>${{product.price}}</p>
                         <p>{{product.description}}</p>
                     </v-card-text>         
                     <v-card-actions>
@@ -22,7 +22,7 @@
     export default {
         props: ['product'],
         data: () => ({
-            isAdded: false        
+            isAdded: false
         }),
         computed: {
         isDescOpen: {
@@ -33,15 +33,15 @@
         }
         },
         methods: {
-        removeProduct (id) {
-            console.log('товар удалён', id)
-        },
-        add() {
-            this.$emit('addItem', this.product)
-            alert(`Продукт ${this.product.name} добавлен!`)
-            this.isAdded = true
+            removeProduct (id) {
+                console.log('товар удалён', id)
+            },
+            add() {
+                this.$emit('addItem', this.product)
+                alert(`Продукт ${this.product.name} добавлен!`)
+                this.isAdded = true
+            }
         }
-        }        
     }
 </script>
 
