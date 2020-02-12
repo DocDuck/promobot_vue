@@ -2,7 +2,7 @@
   <v-row justify="center">
     <v-dialog v-model="isCardOpen" scrollable max-width="800px">
       <v-card>        
-        <v-simple-table>
+        <v-simple-table v-if="products.length">
           <template v-slot:default>
             <thead>
               <tr>
@@ -22,9 +22,11 @@
             </tbody>
           </template>
         </v-simple-table>
+        <v-card-text class="pt-4" v-else>
+          <h3 class="title font-weight-light orange--text mb-2">Ничего нет...</h3></v-card-text>    
         <v-card-actions class="justify-space-around">
-          <v-btn color="blue darken-1" text @click="isCardOpen = false">Закрыть</v-btn>
-          <v-btn color="blue darken-1" text @click="buy">Распечатать позиции</v-btn>
+          <v-btn class="title" color="blue darken-1" text @click="isCardOpen = false">Закрыть</v-btn>
+          <v-btn class="title" v-if="products.length" color="blue darken-1" text @click="buy">Распечатать позиции</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
