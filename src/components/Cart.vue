@@ -6,25 +6,26 @@
           <template v-slot:default>
             <thead>
               <tr>
-                <th class="text-left">Изображение</th>
+                <th class="text-left not-printable"> Изображение</th>
                 <th class="text-left">Товар</th>
                 <th class="text-left">Описание</th>
                 <th class="text-left">Цена</th>
                 <th class="text-left">Количество</th>
-                
+                <th class="text-left not-printable">Удалить</th>              
               </tr>
             </thead>
             <tbody>
               <tr v-for="item in tableData" :key="item.name">
-                <td><styled-icon :color="item.description"></styled-icon></td>
+                <td class="not-printable"><styled-icon :color="item.description"></styled-icon></td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.description }}</td>
                 <td>${{ item.price }}</td>
                 <td>
-                  <v-btn color="darken-1" small text @click="onPlus">+</v-btn>
+                  <v-btn class="not-printable" color="darken-1" small text @click="onPlus">+</v-btn>
                     {{ item.amount }}
-                  <v-btn color="darken-1" small text @click="onMinus">-</v-btn>
+                  <v-btn class="not-printable" color="darken-1" small text @click="onMinus">-</v-btn>
                 </td>
+                <td class="not-printable" ><v-btn color="red" small text @click="onRemove">Х</v-btn></td>
               </tr>
             </tbody>
           </template>
@@ -76,9 +77,9 @@
 <style scoped>
   @media print {
     table td, th {
-      text-align: left !important;
+      text-align: center !important;
     }
-    table td:first-child, th:first-child{
+    table .not-printable {
       display:none !important;
     }
 }

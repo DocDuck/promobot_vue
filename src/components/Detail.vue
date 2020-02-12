@@ -33,9 +33,6 @@
         }
         },
         methods: {
-            removeProduct (id) {
-                console.log('товар удалён', id)
-            },
             add() {
                 this.$emit('addItem', this.product)
                 alert(`Продукт ${this.product.name} добавлен!`)
