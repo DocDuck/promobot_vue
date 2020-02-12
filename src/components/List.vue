@@ -77,17 +77,9 @@
 </template>
 
 <script>
-  import styled from 'vue-styled-components' 
+  
   import products from '@/products.js'
-
-  const backgroundProps = { color: String };
-
-  const StyledImage = styled('div', backgroundProps)`
-    display: block;
-    width: 100%; 
-    height: 60%;
-    background: ${props => props.color ?  props.color : 'white'};
-  `;
+  import { StyledImage } from './StyledComponents'
 
   export default {
     components: {

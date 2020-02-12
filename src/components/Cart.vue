@@ -33,16 +33,8 @@
   </v-row>
 </template>
 <script>
-  import styled from 'vue-styled-components' 
-  
-  const backgroundProps = { color: String };
-
-  const StyledIcon = styled('div', backgroundProps)`
-    display: block;
-    width: 24px; 
-    height: 24px;
-    background: ${props => props.color ?  props.color : 'gray'};
-  `;
+ 
+  import { StyledIcon } from '../components/StyledComponents'
 
   export default {
     components: {
