@@ -3,7 +3,7 @@
     <v-content>
       <List v-if="!isDetailOpen" @openCart='handleOpenCart' @openDetail='handleOpenDetail'/>
       <Detail v-if="isDetailOpen" @addItem="handleAddItem" @openCart='handleOpenCart' :isOpen='isDetailOpen' :product="currentItem" @onClose="handleCloseDetail" />
-      <Cart v-if="isCartOpen" :isOpen='isCartOpen' @onOpen="handleOpenCart" :products='chosenItems'/>
+      <Cart v-if="isCartOpen" :isOpen='isCartOpen' @onOpen="handleOpenCart" @onRemove="handleRemoveItem" :products='chosenItems'/>
     </v-content>
   </v-app>
 </template>
@@ -43,6 +43,9 @@ export default {
     },
     handleAddItem (item) {
       this.chosenItems.push(item)
+    },
+    handleRemoveItem (id) {
+      this.chosenItems = this.chosenItems.filter(item => item.id !== id)
     }
   }
 };

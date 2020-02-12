@@ -15,17 +15,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in tableData" :key="item.name">
+              <tr v-for="(item, i) in tableData" :key="i">
                 <td class="not-printable"><styled-icon :color="item.description"></styled-icon></td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.description }}</td>
                 <td>${{ item.price }}</td>
                 <td>
-                  <v-btn class="not-printable" color="darken-1" small text @click="onPlus">+</v-btn>
+                  <v-btn class="not-printable" color="darken-1" small text @click="onPlus(item.id)">+</v-btn>
                     {{ item.amount }}
-                  <v-btn class="not-printable" color="darken-1" small text @click="onMinus">-</v-btn>
+                  <v-btn class="not-printable" color="darken-1" small text @click="onMinus(item.id)">-</v-btn>
                 </td>
-                <td class="not-printable" ><v-btn color="red" small text @click="onRemove">Х</v-btn></td>
+                <td class="not-printable" ><v-btn color="red" small text @click="onRemove(item.id)">Х</v-btn></td>
               </tr>
             </tbody>
           </template>
@@ -64,13 +64,27 @@
       }
     },
     methods: {
-      removeProduct (id) {
-        console.log('товар удалён', id)
+      onPlus (id) {
+        this.tableData.find(item => item.id === id).amount++        
+      },
+      onMinus (id) {
+        if (this.tableData.find(item => item.id === id).amount > 0) {
+          this.tableData.find(item => item.id === id).amount--
+        }        
+      },
+      onRemove (id) {
+        this.$emit('onRemove', id)
       }
     },
+    watch: {
+      products () {
+        this.tableData = [...this.products].map( item => ({amount: 1, ...item}))
+      }    
+    },
     mounted () {
+      console.log('im mounted', this.products )
       this.tableData = [...this.products].map( item => ({amount: 1, ...item}))
-    }
+    },
   }
 </script>
 
