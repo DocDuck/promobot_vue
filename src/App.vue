@@ -3,7 +3,7 @@
     <v-content>
       <List v-if="!isDetailOpen" @openCart='handleOpenCart' @openDetail='handleOpenDetail'/>
       <Detail v-if="isDetailOpen" @addItem="handleAddItem" @openCart='handleOpenCart' :isOpen='isDetailOpen' :product="currentItem" @onClose="handleCloseDetail" />
-      <Cart :isOpen='isCartOpen' @onOpen="handleOpenCart" :products='chosenItems'/>
+      <Cart v-if="isCartOpen" :isOpen='isCartOpen' @onOpen="handleOpenCart" :products='chosenItems'/>
     </v-content>
   </v-app>
 </template>
@@ -32,7 +32,6 @@ export default {
 
   methods: {
     handleOpenCart (value) {
-      console.log('карточка открыта', value)
       this.isCartOpen = value      
     },
     handleOpenDetail (productId) {

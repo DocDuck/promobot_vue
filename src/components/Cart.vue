@@ -2,7 +2,7 @@
   <v-row justify="center">
     <v-dialog v-model="isCardOpen" scrollable max-width="800px">
       <v-card>        
-        <v-simple-table id="printableTable" v-if="products.length">
+        <v-simple-table id="printableTable" v-if="tableData.length">
           <template v-slot:default>
             <thead>
               <tr>
@@ -10,14 +10,21 @@
                 <th class="text-left">Товар</th>
                 <th class="text-left">Описание</th>
                 <th class="text-left">Цена</th>
+                <th class="text-left">Количество</th>
+                
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in products" :key="item.name">
+              <tr v-for="item in tableData" :key="item.name">
                 <td><styled-icon :color="item.description"></styled-icon></td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.description }}</td>
                 <td>${{ item.price }}</td>
+                <td>
+                  <v-btn color="darken-1" small text @click="onPlus">+</v-btn>
+                    {{ item.amount }}
+                  <v-btn color="darken-1" small text @click="onMinus">-</v-btn>
+                </td>
               </tr>
             </tbody>
           </template>
@@ -42,7 +49,7 @@
     },
     props: ['isOpen', 'products'],
     data: () => ({
-      
+      tableData: []
     }),
     computed: {
       isCardOpen: {
@@ -58,13 +65,10 @@
     methods: {
       removeProduct (id) {
         console.log('товар удалён', id)
-      },
-      buy() {
-        console.log('вот что я купил', this.value )   
       }
     },
     mounted () {
-        console.log('isCardOpen', this.isCardOpen)
+      this.tableData = [...this.products].map( item => ({amount: 1, ...item}))
     }
   }
 </script>
