@@ -1,18 +1,22 @@
 <template>
-  <v-row justify="center">
-    <v-card>
-        <v-card-title>Товар</v-card-title>
-            <v-card-text class="pt-4" style="position: relative;">
-                <h3 class="display-1 font-weight-light orange--text mb-2">{{product.name}}</h3>
-                <p>{{product.price}}</p>
-                <p>{{product.description}}</p>
-            </v-card-text>         
-            <v-card-actions>
-                <v-btn color="blue darken-1" text @click="$emit('onClose')">Закрыть</v-btn>
-                <v-btn color="blue darken-1" text @click="buy">Добавить</v-btn>
-            </v-card-actions>
-    </v-card>    
-  </v-row>
+    <v-container>
+        <v-row
+            class="mt16"
+            justify="center">
+            <v-card>
+                <v-card-title>Товар</v-card-title>
+                    <v-card-text class="pt-4" style="position: relative;">
+                        <h3 class="display-1 font-weight-light orange--text mb-2">{{product.name}}</h3>
+                        <p>{{product.price}}</p>
+                        <p>{{product.description}}</p>
+                    </v-card-text>         
+                    <v-card-actions>
+                        <v-btn color="blue darken-1" text @click="$emit('onClose')">Закрыть</v-btn>
+                        <v-btn color="blue darken-1" text @click="buy">Добавить</v-btn>
+                    </v-card-actions>
+            </v-card>    
+        </v-row>
+    </v-container>
 </template>
 <script>
     export default {
