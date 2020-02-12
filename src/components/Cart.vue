@@ -68,3 +68,14 @@
     }
   }
 </script>
+
+<style scoped>
+  @media print {
+    table td, th {
+      text-align: left !important;
+    }
+    table td:first-child, th:first-child{
+      display:none !important;
+    }
+}
+</style>>
