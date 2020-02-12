@@ -22,7 +22,7 @@
             </tbody>
           </template>
         </v-simple-table>
-        <v-card-actions>
+        <v-card-actions class="justify-space-around">
           <v-btn color="blue darken-1" text @click="isCardOpen = false">Закрыть</v-btn>
           <v-btn color="blue darken-1" text @click="buy">Распечатать позиции</v-btn>
         </v-card-actions>
